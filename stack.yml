@@ -3,7 +3,7 @@ Resources:
   S3Bucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: alura-med-dev
+      BucketName: cadastro-pacientes-dev
       AccessControl: PublicRead
       WebsiteConfiguration:
         IndexDocument: index.html
@@ -18,7 +18,7 @@ Resources:
             Effect: Allow
             Principal: '*'
             Action: 's3:GetObject'
-            Resource: !Join 
+            Resource: !Join
               - ''
               - - 'arn:aws:s3:::'
                 - !Ref S3Bucket
@@ -26,15 +26,15 @@ Resources:
       Bucket: !Ref S3Bucket
 Outputs:
   WebsiteURL:
-    Value: !GetAtt 
+    Value: !GetAtt
       - S3Bucket
       - WebsiteURL
     Description: URL do site hospedado no S3
   S3BucketSecureURL:
-    Value: !Join 
+    Value: !Join
       - ''
       - - 'https://'
-        - !GetAtt 
+        - !GetAtt
           - S3Bucket
           - DomainName
     Description: Nome do bucket S3 onde está os arquivos do site
